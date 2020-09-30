@@ -6,10 +6,22 @@ app.use(cors())
 
 app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
-app.get('/', function(req, res) {
+app.get('/coincheck-btcjpy', function(req, res) {
   axios({
     method:'get',
     url:'https://coincheck.com/api/rate/btc_jpy'
+  }).then(function (response) {
+     res.send(response.data);
+  })
+  .catch(function (error) {
+      console.log(error);
+      isdone2=true;
+  });
+})
+app.get('/huobijp-btc/jpy', function(req, res) {
+  axios({
+    method:'get',
+    url:'https://api-cloud.huobi.co.jp/market/detail/merged?symbol=btcjpy'
   }).then(function (response) {
      res.send(response.data);
   })
