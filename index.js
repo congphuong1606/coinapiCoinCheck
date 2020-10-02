@@ -30,6 +30,20 @@ app.get('/huobijp-btc/jpy', function(req, res) {
       isdone2=true;
   });
 })
+app.get('/gmo-btc', function(req, res) {
+  axios({
+    method:'get',
+    url:'https://api.coin.z.com/public/v1/ticker?symbol=BTC'
+  }).then(function (response) {
+     res.send(response.data);
+  })
+  .catch(function (error) {
+      console.log(error);
+      isdone2=true;
+  });
+})
+
+
 
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
